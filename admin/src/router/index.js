@@ -28,7 +28,7 @@ const router = createRouter({
 // 动态加载路由
 const ConfigRouter = (callBack) => {
   routesConfig.forEach(item => {
-    router.addRoute(item)
+    router.addRoute('mainbox', item)
   })
   callBack && callBack()
 }
@@ -37,7 +37,7 @@ const ConfigRouter = (callBack) => {
 // 设置全局路由守卫
 router.beforeEach((to, from) => {
   const store = useGloableStore();
-  const { isGetterRouter, changeGetterRouter } = store;
+  const { isGetterRouter } = store;
   if (to.name === '/login') {
     return true
   } else {
@@ -49,6 +49,8 @@ router.beforeEach((to, from) => {
       // 已经授权
       // 判断 有没有注册路由
       if (!isGetterRouter) {
+        // debug
+        console.log('zz--------开始动态加载路由');
         // 动态加载路由
         ConfigRouter(() => store.changeGetterRouter(true));
       }

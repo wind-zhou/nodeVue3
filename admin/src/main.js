@@ -1,14 +1,16 @@
-import './assets/main.css'
 
+import ElementPlus from 'element-plus'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import Particles from "particles.vue3";  // 粒子库
 
 import App from './App.vue'
 import router from './router'
+import 'element-plus/dist/index.css'
 
-const app = createApp(App)
-
-app.use(createPinia())
-app.use(router)
-
-app.mount('#app')
+createApp(App)
+    .use(createPinia())
+    .use(router)
+    .use(ElementPlus)
+    .use(Particles)
+    .mount('#app')

@@ -13,6 +13,13 @@ export const useGloableStore = defineStore('gloable', {
     changeGetterRouter(payload) {
       this.isGetterRouter = payload
     },
+    //控制侧边栏的展开
+    changeCollapsed() {
+      // debug
+      console.log('%%%%%%%');
+      this.isCollapsed = !this.isCollapsed
+      console.log('zzz----',this.isCollapsed);
+    }
   }
 
 })

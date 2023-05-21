@@ -8,6 +8,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "element-plus": "^2.3.5",
+    "particles.vue3": "^2.9.3",
     "pinia": "^2.0.36",
     "sass": "^1.62.1",
     "vue": "^3.3.2",
@@ -15,6 +17,8 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
+    "unplugin-auto-import": "^0.16.0",
+    "unplugin-vue-components": "^0.24.1",
     "vite": "^4.3.5"
   }
 }
