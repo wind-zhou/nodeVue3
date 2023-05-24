@@ -1,5 +1,10 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+/*
+ * @作者: kerwin
+ * @公众号: 大前端私房菜
+ */
+const mongoose = require("mongoose")
+const Schema = mongoose.Schema
+// user模型===>users集合
 
 const UserType = {
     username: String,
@@ -9,7 +14,6 @@ const UserType = {
     avatar: String,
     role: Number //管理员1 ,编辑2
 }
+const UserModel = mongoose.model("stus", new Schema(UserType))  // stus 值得是数据库下集合的名字
 
-const UserModel = mongoose.model("user", new Schema(UserType));
-
-module.exports = UserModel;
+module.exports = UserModel
