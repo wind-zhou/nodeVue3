@@ -35,16 +35,20 @@ const ConfigRouter = (callBack) => {
 
 
 // 设置全局路由守卫
-router.beforeEach((to, from) => {
+router.beforeEach((to, from, next) => {
   const store = useGloableStore();
   const { isGetterRouter } = store;
   if (to.name === '/login') {
-    return true
+    // return true
+    next()
   } else {
     // 如果已经授权 ，则继续跳f转，否则，重定向至登录页
     if (!localStorage.getItem('token') && to.name !== 'login') {
       // 没有授权
-      return { name: 'login' }
+      // return { name: 'login' }
+      next({
+        path: "/login"
+      })
     } else {
       // 已经授权
       // 判断 有没有注册路由
@@ -52,9 +56,15 @@ router.beforeEach((to, from) => {
         // debug
         console.log('zz--------开始动态加载路由');
         // 动态加载路由
-        ConfigRouter(() => store.changeGetterRouter(true));
+        ConfigRouter(() => {
+          store.changeGetterRouter(true), next({
+            path: to.fullPath
+          })
+        });
+      } else {
+        next()
       }
-      return true;
+      // return true;
     }
   }
 
