@@ -6,7 +6,7 @@ const UserController = {
     login: async (req, res) => {
         console.log(req.body, 'zz-body')
         const result = await UserService.login(req.body)
-        console.log('result',result);
+        console.log('result', result);
 
         // 数据库没有用户信息
         if (result.length === 0) {
@@ -21,7 +21,7 @@ const UserController = {
                 _id: result[0]._id,
                 username: result[0].username
             }, "1d")
-
+            // 将token 挂到 响应头的 Authorization
             res.header("Authorization", token)
             res.send({
                 ActionType: "OK"
