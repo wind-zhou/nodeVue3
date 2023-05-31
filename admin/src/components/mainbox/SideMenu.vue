@@ -2,15 +2,21 @@
 import { useGloableStore } from '../../stores/index'
 import { HomeFilled, Avatar, UserFilled, MessageBox, Reading } from '@element-plus/icons-vue'
 import { useRoute } from 'vue-router'
+import router from '../../router';
 
 const route = useRoute()
 const store = useGloableStore();
+
+const handleSelect = (key, keyPath) => {
+    console.log(key, keyPath, '--select')
+    router.push(key)
+}
 </script>
 
 <template>
     <el-aside :class="classes.elSide" :width="store.isCollapsed ? '64px' : '240px'">
         <el-menu :default-active="route.fullPath" :class="classes.elMenu" :collapse="store.isCollapsed"
-            :collapse-transition="false">
+            :collapse-transition="false" @select="handleSelect">
             <el-menu-item index="/index">
                 <el-icon><home-filled /></el-icon>
                 <span>首页</span>
