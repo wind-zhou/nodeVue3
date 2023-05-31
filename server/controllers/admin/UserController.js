@@ -24,7 +24,8 @@ const UserController = {
             // 将token 挂到 响应头的 Authorization
             res.header("Authorization", token)
             res.send({
-                ActionType: "OK"
+                ActionType: "OK",
+                data: result[0]
             })
 
         }

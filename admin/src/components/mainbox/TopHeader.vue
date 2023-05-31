@@ -31,7 +31,7 @@ const handleLogout = () => {
         </div>
         <div class="right">
 
-            <span>欢迎 admin 回来</span>
+            <span>欢迎 {{ store.userInfo?.username || '--' }}回来</span>
             <el-dropdown>
                 <span class="el-dropdown-link">
                     <el-icon :size="30" color="white">

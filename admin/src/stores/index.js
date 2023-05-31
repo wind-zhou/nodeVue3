@@ -38,6 +38,15 @@ export const useGloableStore = defineStore('gloable', {
       })
 
     }
-  }
+  },
 
+  persist: {
+    enabled: true,
+    strategies: [
+      {
+        storage: localStorage,
+        paths: ['userInfo']
+      },
+    ],
+  },
 })
