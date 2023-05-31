@@ -1,9 +1,12 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router'
+
 import { options } from '../common/const';
+import { useGloableStore } from '../stores';
 
 const router = useRouter()
+const gloableStore = useGloableStore();
 const loginFormRef = ref() //表单的引用对象
 //表单校验规则
 const loginRules = reactive({
@@ -33,16 +36,13 @@ const submitForm = () => {
     loginFormRef.value.validate((valid) => {
         console.log(valid)
         if (valid) {
-            console.log(loginForm)
-            localStorage.setItem("token", "kerwin");
-
-            router.push("/index")
+            console.log('zz-loginForm', loginForm)
+            gloableStore.login(loginForm, () => {
+                localStorage.setItem("token", "kerwin");
+                router.push("/index")
+            })
         }
     })
-    //2. 拿到表单内容,提交后台
-
-    //3. 设置token
-    // localStorage.setItem("token", "kerwin");
 }
 </script>
 

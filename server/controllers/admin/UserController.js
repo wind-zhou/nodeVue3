@@ -6,12 +6,7 @@ const UserController = {
     login: async (req, res) => {
         console.log(req.body, 'zz-body')
         const result = await UserService.login(req.body)
-
         console.log('result',result);
-        // res.send({
-        //     code: "-1",
-        //     error: "用户名密码不匹配"
-        // })
 
         // 数据库没有用户信息
         if (result.length === 0) {
