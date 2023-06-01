@@ -29,6 +29,16 @@ const UserController = {
             })
 
         }
+    },
+    // 添加用户
+    userAdd: async (req, res) => {
+        console.log(req.body, 'zz-body')
+        const { username, introduction, gender, role, password } = req.body;
+        const avatar = req.file ? `/avataruploads/${req.file.filename}` : ""
+        await UserService.add({ username, introduction, gender: Number(gender), avatar, role: Number(role), password })
+        res.send({
+            ActionType: "OK"
+        })
     }
 }
 
