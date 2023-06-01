@@ -38,7 +38,6 @@ const submitForm = () => {
         if (valid) {
             console.log('zz-loginForm', loginForm)
             gloableStore.login(loginForm, () => {
-                localStorage.setItem("token", "kerwin");
                 router.push("/index")
             })
         }

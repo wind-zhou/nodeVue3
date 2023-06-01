@@ -16,6 +16,8 @@ axios.interceptors.request.use((config) => {
 // 拦截 响应，将 token去下存到本地
 axios.interceptors.response.use((response) => {
     const { authorization } = response.headers
+
+    console.log('zz-authorization', authorization,response);
     authorization && localStorage.setItem("token", authorization)
     return response;
 }, (error) => {
