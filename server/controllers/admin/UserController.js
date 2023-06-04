@@ -23,6 +23,7 @@ const UserController = {
             }, "1d")
             // 将token 挂到 响应头的 Authorization
             res.header("Authorization", token)
+            res.header('Access-Control-Expose-Headers', 'Authorization'); // 这一行一定要加上，否则客户端头部拿不到 Authorization字段
             res.send({
                 ActionType: "OK",
                 data: result[0]

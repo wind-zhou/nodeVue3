@@ -39,7 +39,7 @@ app.use((req, res, next) => {
     next()
     return;
   }
-  const token = req.headers["authorization"].split(" ")[1]
+  const token = req.headers["authorization"].split(" ")[1] 
   // debug
   console.log('zz-token', token);
   if (token) {
@@ -50,6 +50,7 @@ app.use((req, res, next) => {
         _id: payload._id,
         username: payload.username
       }, "1d")
+      res.header('Access-Control-Expose-Headers', 'Authorization');
       res.header("Authorization", newToken)
       next()
     } else {
