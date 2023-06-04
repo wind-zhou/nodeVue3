@@ -23,7 +23,7 @@ const UserService = {
     },
     // 更新用户信息
     putList: async (body) => {
-        return UserModel.updateOne({ _id: body._id }, body)
+        return UserModel.updateOne({ _id: body._id }, { $set: body })
     },
 }
 

@@ -6,8 +6,6 @@ import axios from 'axios';
 
 // 用户列表
 const tableData = ref([]);
-// 当前编辑的用户
-const currentUserObj = ref({})
 const dialogVisible = ref(false);
 const userFormRef = ref();
 const options = [
@@ -22,7 +20,6 @@ const options = [
 ];
 let userForm = reactive({
     username: "",
-    password: "",
     role: 2, //1 是管理员 ,2编辑
     introduction: ""
 });
@@ -56,9 +53,8 @@ const handleEdit = (record) => {
     // debug
     console.log('zz-执行了编辑', record);
     // 数据回填
-    // userForm = record;
+    // userForm = record; // 直接复制不大行，相当于浅拷贝，表单改动时会对列表值产生影响
     Object.assign(userForm, record)
-    // currentUserObj.value = record;
     dialogVisible.value = true;
 }
 

@@ -11,6 +11,15 @@ const handleSelect = (key, keyPath) => {
     console.log(key, keyPath, '--select')
     router.push(key)
 }
+// 自定义指令，用于在没有权限时，删除节点
+const vAdmin = {
+    mounted(el) {
+        // console.log(el)
+        if (store.userInfo.role !== 1) {
+            el.parentNode.removeChild(el)
+        }
+    }
+}
 </script>
 
 <template>
@@ -28,7 +37,7 @@ const handleSelect = (key, keyPath) => {
                 <span>个人中心</span>
             </el-menu-item>
 
-            <el-sub-menu index="/user-manage">
+            <el-sub-menu index="/user-manage" v-admin>
                 <template #title>
                     <el-icon>
                         <user-filled />

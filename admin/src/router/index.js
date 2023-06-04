@@ -27,8 +27,15 @@ const router = createRouter({
 
 // 动态加载路由
 const ConfigRouter = (callBack) => {
+  if (!router.hasRoute("mainbox")) {
+    router.addRoute({
+      path: "/mainbox",
+      name: "mainbox",
+      component: MainBox
+    })
+  }
   routesConfig.forEach(item => {
-    router.addRoute('mainbox', item)
+    checkPermission(item) && router.addRoute('mainbox', item)
   })
   callBack && callBack()
 }
@@ -55,6 +62,9 @@ router.beforeEach((to, from, next) => {
       if (!isGetterRouter) {
         // debug
         console.log('zz--------开始动态加载路由');
+        //删除所有的嵌套路由
+        //mainbox
+        router.removeRoute("mainbox")
         // 动态加载路由
         ConfigRouter(() => {
           store.changeGetterRouter(true), next({
@@ -69,6 +79,17 @@ router.beforeEach((to, from, next) => {
   }
 
 })
+
+// 判断用户是否有管理员权限
+const checkPermission = (item) => {
+  const store = useGloableStore();
+  const { userInfo } = store;
+  if (item.requireAdmin) {
+    return userInfo.role === 1
+  }
+  return true
+}
+
 
 
 

@@ -23,11 +23,13 @@ const routes = [
     },
     {
         path: "/user-manage/adduser",
-        component: UserAdd
+        component: UserAdd,
+        requireAdmin: true
     },
     {
         path: "/user-manage/userlist",
-        component: UserList
+        component: UserList,
+        requireAdmin: true
     },
 
     {
