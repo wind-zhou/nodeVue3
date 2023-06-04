@@ -47,9 +47,10 @@ const submitForm = () => {
         if (valid) {
             console.log('zz-表单信息：', userForm);
             // 1. 调用接口
-            await userStore.addUser(userForm);
+            const res = await userStore.addUser(userForm);
+            console.log('zzz-----res', res);
             // 2. 跳转路由
-            // router.push(`/user-manage/userlist`)
+            res && router.push(`/user-manage/userlist`)
         }
     })
 }

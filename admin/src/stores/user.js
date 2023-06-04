@@ -27,13 +27,13 @@ export const useUserStore = defineStore('user', {
                 console.log(res, 'zz----------')
 
                 if (res.data.ActionType === "OK") {
-                    return;
+                    return true;
                 } else {
-                    // ElMessage.error(res.data.error || '添加用户失败')
                     throw new Error('kkk')
                 }
             } catch (error) {
-                ElMessage.error(res.data.error || '添加用户失败')
+                ElMessage.error(res.data.error || '添加用户失败');
+                return false;
             }
         }
     },
